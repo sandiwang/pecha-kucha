@@ -1,5 +1,9 @@
 $(function(){
-	let currentSlide = 1, continentInterval;
+	const bodyFade = 500,
+				headlineFade = 300;
+	let currentSlide = 1,
+			continentInterval,
+			windowH = $(window).height();
 
 	function checkCoverpageHide() {
 		return $('#cover-page').hasClass('hide') ? 1 : 0;
@@ -81,7 +85,7 @@ $(function(){
 		// TODO: fix the problem which user has to click and then hit the down arrow key
 		$('#' + continent).attr('tabindex', 1).keydown((e) => {
 			// hit down arrow or enter to start presenting
-			if( e.which === 40 || e.which === 13){
+			if( e.which === 40 || e.which === 13 ){
 				currentSlide = 1;
 				startPresent(continent);
 			}
@@ -128,27 +132,35 @@ $(function(){
 		e.preventDefault();
 	});*/
 
-	var bodyFade = 500, headlineFade = 300;
+	$('html').on('keyup', (e) => {
+		if( e.which === 40 || e.which === 13 ){
+			$(this).off('keyup');
+			$('body').delay(500).fadeIn(bodyFade, function(){
+				setTimeout(function() {
+					$('#cover-headline span').css('display', 'inline-block').addClass('flipIn');
+				}, headlineFade);
 
-	$('body').delay(500).fadeIn(bodyFade, function(){
-		setTimeout(function() {
-			$('#cover-headline span').css('display', 'inline-block').addClass('flipIn');
-		}, headlineFade);
+				setTimeout(function() {
+					$('#cover-headline span').append('<div class="underline underlineIn"></div>').addClass('yellow');
+					console.log(windowH, windowH - 60);
+					$('body').on('keyup', (e) => {
+						$('#cover-headline span').css({
+							width: 'calc(100% - 60px)',
+							height: (windowH - 60) + 'px'
+						});
+						$('#cover-headline span').addClass('expanded').css('border', '3px solid #fff');
+						$('.underline').hide();
 
-		setTimeout(function() {
-			$('#cover-headline span').append('<div class="underline underlineIn"></div>').addClass('yellow');
-		}, bodyFade + headlineFade);
+						e.stopPropagation();
+					});
+				}, bodyFade + headlineFade);
+			});
+		}
 	});
 
 	
 
-	$('#cover-headline span').on('click', function(){
-		/* $(this).parents('#cover-headline').animate({
-			top: '-100%',
-			opacity: 0
-		}, 700, 'linear', function(){
-			$(this).hide();
-		}); */
+	/* $('#cover-headline span').on('click', function(){
 		$(this).animate({
 			width: '100%',
 			height: '500px'
@@ -157,6 +169,6 @@ $(function(){
 		});
 		$(this).addClass('expanded').css('border', '3px solid #fff');
 		$('.underline').hide();
-	});
+	}); */
 
 });

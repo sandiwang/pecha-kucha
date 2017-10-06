@@ -1,11 +1,12 @@
-var gulp = require('gulp');
-var sass = require('gulp-sass');
-var browserSync = require('browser-sync').create();
-var runSequence = require('run-sequence');
-var bower = require('gulp-bower');
-//var bower = require('gulp-bower-files');
-//var concat = require('gulp-concat')
-//var gulpFilter = require('gulp-filter');
+const gulp = require('gulp');
+const sass = require('gulp-sass');
+const browserSync = require('browser-sync').create();
+const runSequence = require('run-sequence');
+const bower = require('gulp-bower');
+const babel = require('gulp-babel');
+//const bower = require('gulp-bower-files');
+//const concat = require('gulp-concat')
+//const gulpFilter = require('gulp-filter');
 
 gulp.task('bower', function() {
   return bower();
@@ -32,14 +33,23 @@ gulp.task('sass', function() {
 	}));
 });
 
+gulp.task('babel', function() {
+	return gulp.src("app/js/*.js")
+		.pipe(babel())
+		.pipe(gulp.dest("app/js/dist"))
+		.pipe(browserSync.reload({
+			stream: true
+		}));
+})
+
 gulp.task('watch', function() {
 	gulp.watch('app/sass/*.scss', ['sass']);
 	gulp.watch('app/*.html', browserSync.reload);
-	gulp.watch('app/js/*.js', browserSync.reload);
+	gulp.watch('app/js/*.js', ['babel']);
 });
 
 gulp.task('default', function(callback) {
-	runSequence(['bower', 'sass', 'browserSync'], 'watch',
+	runSequence(['bower', 'sass', 'babel', 'browserSync'], 'watch',
 		callback
 		)
 });

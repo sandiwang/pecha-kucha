@@ -126,7 +126,8 @@ div, span {
     padding-right: 30px;
     border-radius: 5px;
     background-color: rgba(238, 203, 53, 0.7);
-    overflow: hidden; }
+    overflow: hidden;
+    transition: 0.5s all; }
     #cover-headline > div > span.expanded {
       background-color: rgba(238, 203, 53, 0.9); }
   #cover-headline .underline {
@@ -137,9 +138,16 @@ div, span {
     width: 100%;
     background: #fff; }
   #cover-headline .date {
-    font-size: 1.286rem;
+    font-size: 1.143rem;
     font-style: italic;
-    font-family: "Noto Sans", sans-serif; }
+    font-family: "Noto Sans", sans-serif;
+    line-height: 1.571rem;
+    letter-spacing: 2px; }
+  #cover-headline .title {
+    font-size: 2.857rem;
+    line-height: 2.857rem;
+    letter-spacing: 2px;
+    margin-top: 40px; }
 
 #map {
   height: 100%;

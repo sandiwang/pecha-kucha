@@ -8,8 +8,11 @@
   "author": "Ying-Chun Wang",
   "license": "ISC",
   "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
     "browser-sync": "^2.18.13",
     "gulp": "^3.9.1",
+    "gulp-babel": "^7.0.0",
     "gulp-bower": "0.0.13",
     "gulp-bower-files": "^0.2.7",
     "gulp-concat": "^2.6.1",

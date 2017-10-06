@@ -90,6 +90,7 @@ div, span{
 		border-radius: 5px;
 		background-color: rgba(#eecb35, 0.7);
 		overflow: hidden;
+		transition: 0.5s all;
 
 		&.expanded{
 			background-color: rgba(#eecb35, 0.9);
@@ -106,9 +107,18 @@ div, span{
 	}
 
 	.date{
-		font-size: $font18;
+		font-size: $font16;
 		font-style: italic;
 		font-family: $noto;
+		line-height: $font22;
+		letter-spacing: 2px;
+	}
+
+	.title{
+		font-size: $font40;
+		line-height: $font40;
+		letter-spacing: 2px;
+		margin-top: 40px;
 	}
 }
 
