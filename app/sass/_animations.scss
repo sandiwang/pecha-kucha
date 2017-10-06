@@ -1,0 +1,81 @@
+@mixin keyframes($animationName) {
+  @-webkit-keyframes #{$animationName} {
+    @content;
+  }
+  @-moz-keyframes #{$animationName} {
+    @content;
+  }
+  @-o-keyframes #{$animationName} {
+    @content;
+  }
+  @keyframes #{$animationName} {
+    @content;
+  }
+}
+
+@mixin animate($name, $duration, $iteration, $direction, $delay: null, $timing: null) {
+  -webkit-animation-duration: $duration;
+     -moz-animation-duration: $duration;
+       -o-animation-duration: $duration;
+          animation-duration: $duration;
+  -webkit-animation-iteration-count: $iteration;
+     -moz-animation-iteration-count: $iteration;
+       -o-animation-iteration-count: $iteration;
+          animation-iteration-count: $iteration;
+  -webkit-animation-name: $name;
+     -moz-animation-name: $name;
+       -o-animation-name: $name;
+          animation-name: $name;
+  -webkit-animation-direction: $direction;
+     -moz-animation-direction: $direction;
+       -o-animation-direction: $direction;
+          animation-direction: $direction;
+  
+  @if ($delay) {
+    -webkit-animation-delay: $delay;
+       -moz-animation-delay: $delay;
+         -o-animation-delay: $delay;
+            animation-delay: $delay;
+  }
+
+  @if ($timing) {
+    -webkit-animation-timing-function: $timing;
+       -moz-animation-timing-function: $timing;
+         -o-animation-timing-function: $timing;
+            animation-timing-function: $timing;
+  }
+}
+
+@include keyframes(flipIn) {
+  from {
+    -webkit-transform: rotateX(80deg);
+            transform: rotateX(80deg);
+    opacity: 0;
+  }
+  to {
+    -webkit-transform: rotateX(0);
+            transform: rotateX(0);
+    opacity: 1;
+  }
+}
+
+@include keyframes(underlineIn) {
+  from {
+    width: 0;
+    opacity: 1;
+  }
+  to {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+
+@mixin flipIn {
+  @include animate(flipIn, 1s, 1, normal, 0, cubic-bezier(0.250, 0.460, 0.450, 0.940));
+}
+
+@mixin underlineIn {
+  @include animate(underlineIn, 0.7s, 1, normal);
+}
+

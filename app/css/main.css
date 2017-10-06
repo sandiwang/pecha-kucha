@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css?family=Lobster|Noto+Sans|Work+Sans");
+@-webkit-keyframes flipIn {
+  from {
+    -webkit-transform: rotateX(80deg);
+    transform: rotateX(80deg);
+    opacity: 0; }
+  to {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1; } }
+
+@-moz-keyframes flipIn {
+  from {
+    -webkit-transform: rotateX(80deg);
+    transform: rotateX(80deg);
+    opacity: 0; }
+  to {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1; } }
+
+@-o-keyframes flipIn {
+  from {
+    -webkit-transform: rotateX(80deg);
+    transform: rotateX(80deg);
+    opacity: 0; }
+  to {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1; } }
+
+@keyframes flipIn {
+  from {
+    -webkit-transform: rotateX(80deg);
+    transform: rotateX(80deg);
+    opacity: 0; }
+  to {
+    -webkit-transform: rotateX(0);
+    transform: rotateX(0);
+    opacity: 1; } }
+
+@-webkit-keyframes underlineIn {
+  from {
+    width: 0;
+    opacity: 1; }
+  to {
+    width: 100%;
+    opacity: 1; } }
+
+@-moz-keyframes underlineIn {
+  from {
+    width: 0;
+    opacity: 1; }
+  to {
+    width: 100%;
+    opacity: 1; } }
+
+@-o-keyframes underlineIn {
+  from {
+    width: 0;
+    opacity: 1; }
+  to {
+    width: 100%;
+    opacity: 1; } }
+
+@keyframes underlineIn {
+  from {
+    width: 0;
+    opacity: 1; }
+  to {
+    width: 100%;
+    opacity: 1; } }
+
+html, body {
+  background: #124672;
+  height: 100%;
+  width: 100%;
+  position: relative;
+  margin: 0;
+  padding: 0;
+  font-size: 14px;
+  font-family: "Noto Sans", sans-serif; }
+
+body {
+  overflow: hidden;
+  display: none; }
+
+div, span {
+  box-sizing: border-box; }
+
+#cover-page, .continent, .section {
+  height: 100%;
+  width: 100%;
+  position: relative; }
+
+#cover-page {
+  background: #124672;
+  z-index: 99; }
+
+#cover-headline {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  z-index: 99;
+  font-family: "Lobster", cursive;
+  text-align: center;
+  font-size: 5.714rem;
+  color: #fff;
+  letter-spacing: 4px;
+  background-color: #124672;
+  background-image: url("../img/pizza.png");
+  background-repeat: repeat;
+  background-size: 60px 60px; }
+  #cover-headline > div {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+    padding-bottom: 3px; }
+  #cover-headline > div > span {
+    display: none;
+    position: relative;
+    cursor: pointer;
+    height: 160px;
+    line-height: 160px;
+    padding-left: 30px;
+    padding-right: 30px;
+    border-radius: 5px;
+    background-color: rgba(238, 203, 53, 0.7);
+    overflow: hidden; }
+    #cover-headline > div > span.expanded {
+      background-color: rgba(238, 203, 53, 0.9); }
+  #cover-headline .underline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 3px;
+    width: 100%;
+    background: #fff; }
+  #cover-headline .date {
+    font-size: 1.286rem;
+    font-style: italic;
+    font-family: "Noto Sans", sans-serif; }
+
+#map {
+  height: 100%;
+  padding: 50px; }
+  #map img {
+    width: 100%;
+    height: 100%;
+    opacity: 0.5; }
+
+.header {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  z-index: 98; }
+
+.continent {
+  background: #69bdb5;
+  position: absolute;
+  top: 100%;
+  z-index: 2;
+  outline: none; }
+
+#asia {
+  top: 0;
+  left: 100%; }
+  #asia .continent {
+    background: rgba(255, 0, 0, 0.3); }
+
+.section {
+  background: #fff; }
+
+h1 {
+  margin: 0; }
+
+.flipIn {
+  -webkit-animation-duration: 1s;
+  -moz-animation-duration: 1s;
+  -o-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-name: flipIn;
+  -moz-animation-name: flipIn;
+  -o-animation-name: flipIn;
+  animation-name: flipIn;
+  -webkit-animation-direction: normal;
+  -moz-animation-direction: normal;
+  -o-animation-direction: normal;
+  animation-direction: normal;
+  -webkit-animation-delay: 0;
+  -moz-animation-delay: 0;
+  -o-animation-delay: 0;
+  animation-delay: 0;
+  -webkit-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -moz-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  -o-animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+
+.scaleIn {
+  transform-origin: 50% 50%;
+  animation: scaleIn 0.7s; }
+
+.underlineIn {
+  -webkit-animation-duration: 0.7s;
+  -moz-animation-duration: 0.7s;
+  -o-animation-duration: 0.7s;
+  animation-duration: 0.7s;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-name: underlineIn;
+  -moz-animation-name: underlineIn;
+  -o-animation-name: underlineIn;
+  animation-name: underlineIn;
+  -webkit-animation-direction: normal;
+  -moz-animation-direction: normal;
+  -o-animation-direction: normal;
+  animation-direction: normal; }

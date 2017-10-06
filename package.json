@@ -1,0 +1,20 @@
+{
+  "name": "pecha",
+  "version": "1.0.0",
+  "description": "pecha kucha",
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Ying-Chun Wang",
+  "license": "ISC",
+  "devDependencies": {
+    "browser-sync": "^2.18.13",
+    "gulp": "^3.9.1",
+    "gulp-bower": "0.0.13",
+    "gulp-bower-files": "^0.2.7",
+    "gulp-concat": "^2.6.1",
+    "gulp-filter": "^5.0.1",
+    "gulp-sass": "^3.1.0",
+    "run-sequence": "^2.1.0"
+  }
+}

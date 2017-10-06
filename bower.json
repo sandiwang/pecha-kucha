@@ -1,0 +1,21 @@
+{
+  "name": "pecha",
+  "description": "pecha kucha",
+  "main": "index.js",
+  "authors": [
+    "Ying-Chun Wang"
+  ],
+  "license": "ISC",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "devDependencies": {
+    "jQuery": "^3.2.1"
+  }
+}

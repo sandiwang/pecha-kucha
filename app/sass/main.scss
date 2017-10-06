@@ -1,0 +1,171 @@
+@import url('https://fonts.googleapis.com/css?family=Lobster|Noto+Sans|Work+Sans');
+$lobster: 'Lobster', cursive;
+$noto: 'Noto Sans', sans-serif;
+$worksans: 'Work Sans', sans-serif;
+
+$dark-blue: #124672;
+
+$font12: 0.8571rem;
+$font16: 1.143rem;
+$font18: 1.286rem;
+$font20: 1.429rem;
+$font22: 1.571rem;
+$font26: 1.857rem;
+$font28: 2rem;
+$font30: 2.143rem;
+$font34: 2.429rem;
+$font40: 2.857rem;
+$font50: 3.571rem;
+$font60: 4.286rem;
+$font80: 5.714rem;
+
+$mainheaderH: 160px;
+
+@import 'animations';
+
+html, body{
+	background: $dark-blue;
+	height: 100%;
+	width: 100%;
+	position: relative;
+	margin: 0;
+	padding: 0;
+	font-size: 14px;
+	font-family: $noto;
+	// font-family: $worksans;
+}
+
+body{
+	overflow: hidden;
+	display: none;
+}
+
+div, span{
+	box-sizing: border-box;
+}
+
+#cover-page, .continent, .section{
+	height: 100%;
+	width: 100%;
+	position: relative;
+}
+
+#cover-page{
+	background: $dark-blue;
+	z-index: 99;
+}
+
+#cover-headline{
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	z-index: 99;
+	font-family: $lobster;
+	text-align: center;
+	font-size: $font80;
+	color: #fff;
+	letter-spacing: 4px;
+	background: {
+		color: $dark-blue;
+		image: url('../img/pizza.png');
+		repeat: repeat;
+		size: 60px 60px;
+	}
+
+	> div{
+		position: relative;
+		top: 50%;
+		transform: translateY(-50%);
+		padding-bottom: 3px;
+	}
+
+	> div > span{
+		display: none;
+		position: relative;
+		cursor: pointer;
+		height: $mainheaderH;
+		line-height: $mainheaderH;
+		padding-left: 30px;
+		padding-right: 30px;
+		border-radius: 5px;
+		background-color: rgba(#eecb35, 0.7);
+		overflow: hidden;
+
+		&.expanded{
+			background-color: rgba(#eecb35, 0.9);
+		}
+	}
+
+	.underline{
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		height: 3px;
+		width: 100%;
+		background: #fff;
+	}
+
+	.date{
+		font-size: $font18;
+		font-style: italic;
+		font-family: $noto;
+	}
+}
+
+#map{
+	height: 100%;
+	padding: 50px;
+
+	img{
+		width: 100%;
+		height: 100%;
+		opacity: 0.5;
+	}
+}
+
+.header{
+	position: absolute;
+	top: 10px;
+	left: 10px;
+	z-index: 98;
+}
+
+.continent{
+	background: #69bdb5;
+	position: absolute;
+	top: 100%;
+	z-index: 2;
+	outline: none;
+}
+
+#asia {
+	top: 0;
+	left: 100%;
+
+	.continent{
+		background: rgba(red, 0.3);
+	}
+}
+
+.section{
+	background: #fff;
+}
+
+h1{
+	margin: 0;
+}
+
+.flipIn{
+	@include flipIn;
+}
+
+.scaleIn{
+	transform-origin: 50% 50%;
+	animation: scaleIn 0.7s;
+}
+
+.underlineIn{
+	@include underlineIn;
+}
+
+
