@@ -71,6 +71,38 @@
     width: 100%;
     opacity: 1; } }
 
+@-webkit-keyframes slideIn {
+  from {
+    margin-top: -50px;
+    opacity: 0; }
+  to {
+    margin-top: 0;
+    opacity: 1; } }
+
+@-moz-keyframes slideIn {
+  from {
+    margin-top: -50px;
+    opacity: 0; }
+  to {
+    margin-top: 0;
+    opacity: 1; } }
+
+@-o-keyframes slideIn {
+  from {
+    margin-top: -50px;
+    opacity: 0; }
+  to {
+    margin-top: 0;
+    opacity: 1; } }
+
+@keyframes slideIn {
+  from {
+    margin-top: -50px;
+    opacity: 0; }
+  to {
+    margin-top: 0;
+    opacity: 1; } }
+
 html, body {
   background: #124672;
   height: 100%;
@@ -151,11 +183,69 @@ div, span {
 
 #map {
   height: 100%;
-  padding: 50px; }
-  #map img {
-    width: 100%;
+  transition: 0.5s all;
+  position: relative;
+  display: none; }
+  #map > div > img {
+    max-width: 100%;
     height: 100%;
-    opacity: 0.5; }
+    opacity: 0.8; }
+
+.map-container {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  margin: auto;
+  width: 1500px;
+  height: 850px; }
+
+.markers {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0; }
+  .markers > div {
+    position: relative;
+    height: 100%; }
+
+.marker {
+  display: none;
+  position: absolute;
+  height: 80px;
+  width: 80px;
+  background: url("../img/marker.png") center no-repeat;
+  background-size: 80px 80px;
+  cursor: pointer; }
+  .marker img {
+    width: 60%;
+    display: block;
+    margin: 5px auto 0;
+    border-radius: 100%; }
+
+#marker-north-america {
+  top: 20%;
+  left: 11%; }
+
+#marker-south-america {
+  top: 60%;
+  left: 22%; }
+
+#marker-asia {
+  top: 27%;
+  left: 74%; }
+
+#marker-australia {
+  top: 64%;
+  left: 84%; }
+
+#marker-africa {
+  top: 35%;
+  left: 47%; }
+
+#marker-europe {
+  top: 8%;
+  left: 48%; }
 
 .header {
   position: absolute;
@@ -167,14 +257,16 @@ div, span {
   background: #69bdb5;
   position: absolute;
   top: 100%;
-  z-index: 2;
+  z-index: 99;
   outline: none; }
 
-#asia {
+#asia, #australia {
   top: 0;
   left: 100%; }
-  #asia .continent {
-    background: rgba(255, 0, 0, 0.3); }
+
+#south-america, #africa {
+  top: 0;
+  right: 100%; }
 
 .section {
   background: #fff; }
@@ -229,3 +321,30 @@ h1 {
   -moz-animation-direction: normal;
   -o-animation-direction: normal;
   animation-direction: normal; }
+
+.slideIn {
+  -webkit-animation-duration: 0.7s;
+  -moz-animation-duration: 0.7s;
+  -o-animation-duration: 0.7s;
+  animation-duration: 0.7s;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+  -o-animation-iteration-count: 1;
+  animation-iteration-count: 1;
+  -webkit-animation-name: slideIn;
+  -moz-animation-name: slideIn;
+  -o-animation-name: slideIn;
+  animation-name: slideIn;
+  -webkit-animation-direction: normal;
+  -moz-animation-direction: normal;
+  -o-animation-direction: normal;
+  animation-direction: normal;
+  display: block; }
+
+@media screen and (max-height: 800px) {
+  .map-container {
+    width: 1200px;
+    height: 600px; }
+  #marker-north-america {
+    top: 15%;
+    left: 11%; } }

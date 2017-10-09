@@ -20,6 +20,7 @@ $font60: 4.286rem;
 $font80: 5.714rem;
 
 $mainheaderH: 160px;
+$markerSize: 80px;
 
 @import 'animations';
 
@@ -124,14 +125,87 @@ div, span{
 
 #map{
 	height: 100%;
-	padding: 50px;
+	//padding: 50px;
+	transition: 0.5s all;
+	position: relative;
+	display: none;
 
-	img{
-		width: 100%;
+	> div > img{
+		max-width: 100%;
 		height: 100%;
-		opacity: 0.5;
+		opacity: 0.8;
 	}
 }
+
+.map-container{
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	margin: auto;
+	width: 1500px;
+	height: 850px;
+}
+
+.markers{
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+
+	> div{
+		position: relative;
+		height: 100%;
+	}
+}
+
+.marker{
+	display: none;
+	position: absolute;
+	height: $markerSize;
+	width: $markerSize;
+	background: url('../img/marker.png') center no-repeat;
+	background-size: $markerSize $markerSize;
+	cursor: pointer;
+
+	img{
+		width: 60%;
+		display: block;
+		margin: 5px auto 0;
+		border-radius: 100%;
+	}
+}
+
+#marker-north-america{
+	top: 20%;
+	left: 11%;
+}
+
+#marker-south-america{
+	top: 60%;
+	left: 22%;
+}
+
+#marker-asia{
+	top: 27%;
+	left: 74%;
+}
+
+#marker-australia{
+	top: 64%;
+	left: 84%;
+}
+
+#marker-africa{
+	top: 35%;
+	left: 47%;
+}
+
+#marker-europe{
+	top: 8%;
+	left: 48%;
+}
+
 
 .header{
 	position: absolute;
@@ -144,17 +218,18 @@ div, span{
 	background: #69bdb5;
 	position: absolute;
 	top: 100%;
-	z-index: 2;
+	z-index: 99;
 	outline: none;
 }
 
-#asia {
+#asia, #australia {
 	top: 0;
 	left: 100%;
+}
 
-	.continent{
-		background: rgba(red, 0.3);
-	}
+#south-america, #africa {
+	top: 0;
+	right: 100%;
 }
 
 .section{
@@ -178,4 +253,20 @@ h1{
 	@include underlineIn;
 }
 
+.slideIn{
+	@include slideIn;
+	display: block;
+}
 
+
+@media screen and (max-height: 800px){
+	.map-container{
+		width: 1200px;
+		height: 600px;
+	}
+
+	#marker-north-america{
+		top: 15%;
+		left: 11%;
+	}
+}

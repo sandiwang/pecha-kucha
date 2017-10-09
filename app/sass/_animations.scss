@@ -70,6 +70,17 @@
   }
 }
 
+@include keyframes(slideIn) {
+  from {
+    margin-top: -50px;
+    opacity: 0;
+  }
+  to {
+    margin-top: 0;
+    opacity: 1;
+  }
+}
+
 
 @mixin flipIn {
   @include animate(flipIn, 1s, 1, normal, 0, cubic-bezier(0.250, 0.460, 0.450, 0.940));
@@ -79,3 +90,6 @@
   @include animate(underlineIn, 0.7s, 1, normal);
 }
 
+@mixin slideIn {
+  @include animate(slideIn, 0.7s, 1, normal);
+}
