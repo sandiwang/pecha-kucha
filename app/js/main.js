@@ -1,7 +1,21 @@
 $(function(){
-	const bodyFade = 500, headlineFade = 300, pageTransDuration = 500;
+	// TODO: change slide duration to 20000 (20 secs)
+	const bodyFade = 500, headlineFade = 300, pageTransDuration = 500, slideDuration = 2000;
 	let currentSlide = 1, continentInterval,
 			windowH = $(window).height();
+
+	function adjustMapHeight() {
+		const windowH = $(window).height();
+
+		$('#cover-headline span').css({
+			height: (windowH - 60) + 'px'
+		});
+
+		$('#map').css({
+			display: 'block',
+			height: (windowH - 60 - 100 - 6 - 10)
+		});
+	}
 
 	function slideMarkerIn($marker, delay) {
 		setTimeout(function() {
@@ -10,12 +24,12 @@ $(function(){
 	}
 
 	function showMarkers() {
-		slideMarkerIn( $('.marker:nth-child(2n):not(:last-child)'), bodyFade + headlineFade + 700 );
-		slideMarkerIn( $('.marker:nth-child(3n)'), bodyFade + headlineFade + 1200 );
-		slideMarkerIn( $('.marker:nth-child(2n+1)'), bodyFade + headlineFade + 1700 );
-		slideMarkerIn( $('.marker:nth-child(6n)'), bodyFade + headlineFade + 2200 );
+		slideMarkerIn( $('.marker:nth-child(2n):not(:last-child)'), bodyFade + headlineFade + 500 );
+		slideMarkerIn( $('.marker:nth-child(3n)'), bodyFade + headlineFade + 1000 );
+		slideMarkerIn( $('.marker:nth-child(2n+1)'), bodyFade + headlineFade + 1500 );
+		slideMarkerIn( $('.marker:nth-child(6n)'), bodyFade + headlineFade + 2000 );
 
-		setTimeout(() => $('.marker').css('display', 'block').removeClass('slideIn'), bodyFade + headlineFade + 2200);
+		setTimeout(() => $('.marker').css('display', 'block').removeClass('slideIn'), bodyFade + headlineFade + 2000);
 	}
 
 	function addClassLast(elem) {
@@ -82,11 +96,11 @@ $(function(){
 		console.log(`${continent} is starting...`);
 
 		$(`#${continent} .section:first-child`).addClass('active');
-		continentInterval = setInterval( () => nextSlide(continent), 2000);
+		continentInterval = setInterval( () => nextSlide(continent), slideDuration);
 	}
 
 	function goToPresentation() {
-		let continent = $(this).attr('id').replace('marker-', '');
+		const continent = $(this).attr('id').replace('marker-', '');
 		
 		if( continent === 'north-america' || continent === 'europe' ) {
 			$(`#${continent}`).animate({
@@ -110,14 +124,14 @@ $(function(){
 				startPresent(continent);
 			}
 		});
+
+		$(`#marker-${continent}`).addClass('disabled');
 	}
 
+
+	$(window).on('resize', adjustMapHeight);
+
 	$('.marker').on('click', goToPresentation);
-	/* $('.marker').hover(function(){
-		$(this).addClass('bounce');
-	}, function() {
-		$(this).removeClass('bounce');
-	}); */
 
 	$('html').on('keyup', (e) => {
 		if( e.which === 40 || e.which === 13 ){
@@ -146,6 +160,7 @@ $(function(){
 						$('.underline').hide();
 
 						$('#map').css('display', 'block').css('height', (windowH - 60 - 100 - 6 - 10));
+						$('html').off('keyup');
 
 						//e.stopPropagation();
 						return showMarkers();

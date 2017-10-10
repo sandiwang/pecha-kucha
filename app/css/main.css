@@ -246,12 +246,10 @@ div, span {
 .marker {
   display: none;
   position: absolute;
-  height: 80px;
-  width: 80px;
-  background: url("../img/marker.png") center no-repeat;
-  background-size: 80px 80px;
+  height: 100px;
+  width: 100px;
   cursor: pointer; }
-  .marker:hover {
+  .marker:not(.disabled):hover {
     -webkit-animation-duration: 2s;
     -moz-animation-duration: 2s;
     -o-animation-duration: 2s;
@@ -268,35 +266,52 @@ div, span {
     -moz-animation-direction: normal;
     -o-animation-direction: normal;
     animation-direction: normal; }
+  .marker.disabled {
+    color: rgba(0, 0, 0, 0.6);
+    cursor: default; }
+    .marker.disabled img {
+      opacity: 0.6; }
+  .marker > div {
+    position: relative;
+    height: 100%;
+    width: 100%; }
+  .marker i {
+    font-size: 100px; }
   .marker img {
-    width: 60%;
+    width: 50px;
+    border-radius: 100%;
     display: block;
-    margin: 5px auto 0;
-    border-radius: 100%; }
+    position: absolute;
+    top: 0;
+    margin: 13px 25px 0; }
 
 #marker-north-america {
-  top: 20%;
+  top: 18%;
   left: 11%; }
 
 #marker-south-america {
-  top: 60%;
+  top: 58%;
   left: 22%; }
 
 #marker-asia {
-  top: 27%;
+  top: 25%;
   left: 74%; }
 
 #marker-australia {
-  top: 64%;
+  top: 62%;
   left: 84%; }
 
 #marker-africa {
-  top: 35%;
+  top: 33%;
   left: 47%; }
 
 #marker-europe {
-  top: 8%;
-  left: 48%; }
+  top: 11%;
+  left: 45%; }
+
+#marker-middle-east {
+  top: 18%;
+  left: 53%; }
 
 .header {
   position: absolute;
@@ -315,7 +330,7 @@ div, span {
   top: 0;
   left: 100%; }
 
-#south-america, #africa {
+#south-america, #africa, #middle-east {
   top: 0;
   right: 100%; }
 
@@ -411,10 +426,26 @@ h1 {
   animation-direction: normal;
   display: block; }
 
+@media screen and (max-height: 1000px) {
+  .map-container {
+    width: 1350px;
+    height: 720px; } }
+
+@media screen and (max-height: 900px) {
+  .map-container {
+    width: 1280px;
+    height: 670px; }
+  #marker-europe {
+    top: 10%;
+    left: 42%; } }
+
 @media screen and (max-height: 800px) {
   .map-container {
     width: 1200px;
     height: 600px; }
   #marker-north-america {
     top: 15%;
-    left: 11%; } }
+    left: 11%; }
+  #marker-europe {
+    top: 7%;
+    left: 43%; } }

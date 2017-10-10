@@ -1,12 +1,27 @@
 'use strict';
 
 $(function () {
+	// TODO: change slide duration to 20000 (20 secs)
 	var bodyFade = 500,
 	    headlineFade = 300,
-	    pageTransDuration = 500;
+	    pageTransDuration = 500,
+	    slideDuration = 2000;
 	var currentSlide = 1,
 	    continentInterval = void 0,
 	    windowH = $(window).height();
+
+	function adjustMapHeight() {
+		var windowH = $(window).height();
+
+		$('#cover-headline span').css({
+			height: windowH - 60 + 'px'
+		});
+
+		$('#map').css({
+			display: 'block',
+			height: windowH - 60 - 100 - 6 - 10
+		});
+	}
 
 	function slideMarkerIn($marker, delay) {
 		setTimeout(function () {
@@ -15,14 +30,14 @@ $(function () {
 	}
 
 	function showMarkers() {
-		slideMarkerIn($('.marker:nth-child(2n):not(:last-child)'), bodyFade + headlineFade + 700);
-		slideMarkerIn($('.marker:nth-child(3n)'), bodyFade + headlineFade + 1200);
-		slideMarkerIn($('.marker:nth-child(2n+1)'), bodyFade + headlineFade + 1700);
-		slideMarkerIn($('.marker:nth-child(6n)'), bodyFade + headlineFade + 2200);
+		slideMarkerIn($('.marker:nth-child(2n):not(:last-child)'), bodyFade + headlineFade + 500);
+		slideMarkerIn($('.marker:nth-child(3n)'), bodyFade + headlineFade + 1000);
+		slideMarkerIn($('.marker:nth-child(2n+1)'), bodyFade + headlineFade + 1500);
+		slideMarkerIn($('.marker:nth-child(6n)'), bodyFade + headlineFade + 2000);
 
 		setTimeout(function () {
 			return $('.marker').css('display', 'block').removeClass('slideIn');
-		}, bodyFade + headlineFade + 2200);
+		}, bodyFade + headlineFade + 2000);
 	}
 
 	function addClassLast(elem) {
@@ -93,7 +108,7 @@ $(function () {
 		$('#' + continent + ' .section:first-child').addClass('active');
 		continentInterval = setInterval(function () {
 			return nextSlide(continent);
-		}, 2000);
+		}, slideDuration);
 	}
 
 	function goToPresentation() {
@@ -121,14 +136,13 @@ $(function () {
 				startPresent(continent);
 			}
 		});
+
+		$('#marker-' + continent).addClass('disabled');
 	}
 
+	$(window).on('resize', adjustMapHeight);
+
 	$('.marker').on('click', goToPresentation);
-	/* $('.marker').hover(function(){
- 	$(this).addClass('bounce');
- }, function() {
- 	$(this).removeClass('bounce');
- }); */
 
 	$('html').on('keyup', function (e) {
 		if (e.which === 40 || e.which === 13) {
@@ -157,6 +171,7 @@ $(function () {
 						$('.underline').hide();
 
 						$('#map').css('display', 'block').css('height', windowH - 60 - 100 - 6 - 10);
+						$('html').off('keyup');
 
 						//e.stopPropagation();
 						return showMarkers();
