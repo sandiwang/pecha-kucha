@@ -9,12 +9,13 @@ $(function(){
 		}, delay);
 	}
 
-	function checkCoverpageHide() {
-		return $('#cover-page').hasClass('hide') ? 1 : 0;
-	}
+	function showMarkers() {
+		slideMarkerIn( $('.marker:nth-child(2n):not(:last-child)'), bodyFade + headlineFade + 700 );
+		slideMarkerIn( $('.marker:nth-child(3n)'), bodyFade + headlineFade + 1200 );
+		slideMarkerIn( $('.marker:nth-child(2n+1)'), bodyFade + headlineFade + 1700 );
+		slideMarkerIn( $('.marker:nth-child(6n)'), bodyFade + headlineFade + 2200 );
 
-	function atLastSlide() {
-		return $('#north-america').hasClass('last') ? 1 : 0;
+		setTimeout(() => $('.marker').css('display', 'block').removeClass('slideIn'), bodyFade + headlineFade + 2200);
 	}
 
 	function addClassLast(elem) {
@@ -27,7 +28,7 @@ $(function(){
 
 	function isLastSlide(count) {
 		// TODO: replace 2 with 20
-		return (count + 1) === 2 ? 1 : 0;
+		return (count + 1) === 10 ? 1 : 0;
 	}
 
 	function doSlide(continent) {
@@ -42,10 +43,17 @@ $(function(){
 		});
 	}
 
+	function resetSlides(continent) {
+		$(`#${continent} .section.active`).removeClass('active');
+		$(`#${continent} .section`).css('height', '100%');
+
+		$(`#${continent}`).off('keydown');
+	}
+
 	function backToCover(continent) {
 		$(`#${continent}`).animate({
 			top: '100%'
-		}, pageTransDuration).removeAttr('tabindex');
+		}, pageTransDuration, 'linear', () => resetSlides(continent)).removeAttr('tabindex');
 	}
 
 	function nextSlide(continent) {
@@ -53,12 +61,21 @@ $(function(){
 		if( isLastSlide(currentSlide) === 1 ) {
 			console.log('stop interval');
 			clearInterval(continentInterval);
-			setTimeout(() => backToCover(continent), 2000);
+
+			// unbind the keydown before we bind it again
+			$(`#${continent}`).off('keydown');
+
+			// wait for user to hit keys to back to home
+			$(`#${continent}`).on('keydown', (e) => {
+				if( e.which === 40 || e.which === 13 ){
+					backToCover(continent);
+				}
+			});
+			// setTimeout(() => backToCover(continent), 2000);
 		}
 
 		doSlide(continent);
 		currentSlide++;
-		
 	}
 
 	function startPresent(continent) {
@@ -95,13 +112,20 @@ $(function(){
 		});
 	}
 
-	// $('ul li').on('click', goToPresentation);
 	$('.marker').on('click', goToPresentation);
+	/* $('.marker').hover(function(){
+		$(this).addClass('bounce');
+	}, function() {
+		$(this).removeClass('bounce');
+	}); */
 
 	$('html').on('keyup', (e) => {
 		if( e.which === 40 || e.which === 13 ){
-			$(this).off('keyup');
-			$('body').delay(500).fadeIn(bodyFade, function(){
+			$('html').off('keyup');
+
+			$('body').delay(500).animate({
+				'opacity': 1
+			}, bodyFade, 'linear', () => {
 				setTimeout(() => {
 					$('#cover-headline span').css('display', 'inline-block').addClass('flipIn');
 				}, headlineFade);
@@ -109,45 +133,26 @@ $(function(){
 				setTimeout(() => {
 					$('#cover-headline span').append('<div class="underline underlineIn"></div>').addClass('yellow');
 
-					$('body').on('keyup', (e) => {
+					$('html').on('keyup', (e) => {
 						$('#cover-headline span').css({
 							width: 'calc(100% - 60px)',
 							height: (windowH - 60) + 'px',
 							'line-height': '100px',
 							'font-size': '60px',
 							'border': '3px solid #fff',
+							'margin-top': '15px',
 							cursor: 'default'
 						}).addClass('expanded');
 						$('.underline').hide();
 
 						$('#map').css('display', 'block').css('height', (windowH - 60 - 100 - 6 - 10));
 
-						slideMarkerIn( $('.marker:nth-child(2n):not(:last-child)'), bodyFade + headlineFade + 700 );
-						slideMarkerIn( $('.marker:nth-child(3n)'), bodyFade + headlineFade + 1200 );
-						slideMarkerIn( $('.marker:nth-child(2n+1)'), bodyFade + headlineFade + 1700 );
-						slideMarkerIn( $('.marker:nth-child(6n)'), bodyFade + headlineFade + 2200 );
-
-						/* setTimeout(function() {
-							$('.marker:nth-child(2n):not(:last-child)').addClass('slideIn');
-						}, bodyFade + headlineFade + 700);
-
-						setTimeout(function() {
-							$('.marker:nth-child(3n)').addClass('slideIn');
-						}, bodyFade + headlineFade + 1200);
-
-						setTimeout(function() {
-							$('.marker:nth-child(2n+1)').addClass('slideIn');
-						}, bodyFade + headlineFade + 1700);
-
-						setTimeout(function() {
-							$('.marker:nth-child(6n)').addClass('slideIn');
-						}, bodyFade + headlineFade + 2200); */
-
-						e.stopPropagation();
+						//e.stopPropagation();
+						return showMarkers();
 					});
 				}, bodyFade + headlineFade);
 			});
 		}
-	});
+	}); 
 
 });

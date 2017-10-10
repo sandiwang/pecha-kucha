@@ -81,6 +81,18 @@
   }
 }
 
+@include keyframes(bounce) {
+  0%, 20%, 50%, 80%, 100% {
+    transform: translateY(0);
+  }
+  40% {
+    transform: translateY(-30px);
+  }
+  60% {
+    transform: translateY(-15px);
+  }
+}
+
 
 @mixin flipIn {
   @include animate(flipIn, 1s, 1, normal, 0, cubic-bezier(0.250, 0.460, 0.450, 0.940));
@@ -92,4 +104,8 @@
 
 @mixin slideIn {
   @include animate(slideIn, 0.7s, 1, normal);
+}
+
+@mixin bounce {
+  @include animate(bounce, 2s, infinite, normal);
 }

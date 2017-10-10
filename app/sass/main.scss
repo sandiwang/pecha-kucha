@@ -38,11 +38,14 @@ html, body{
 
 body{
 	overflow: hidden;
-	display: none;
+	//display: none;
+	opacity: 0;
 }
 
 div, span{
 	box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	-ms-box-sizing: border-box;
 }
 
 #cover-page, .continent, .section{
@@ -168,6 +171,10 @@ div, span{
 	background-size: $markerSize $markerSize;
 	cursor: pointer;
 
+	&:hover{
+		@include bounce;
+	}
+
 	img{
 		width: 60%;
 		display: block;
@@ -255,6 +262,11 @@ h1{
 
 .slideIn{
 	@include slideIn;
+	display: block;
+}
+
+.bounce{
+	@include bounce;
 	display: block;
 }
 
