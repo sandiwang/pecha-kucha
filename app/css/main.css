@@ -267,23 +267,24 @@ div, span {
     -o-animation-direction: normal;
     animation-direction: normal; }
   .marker.disabled {
-    color: rgba(0, 0, 0, 0.6);
+    color: rgba(17, 25, 38, 0.95);
     cursor: default; }
-    .marker.disabled img {
-      opacity: 0.6; }
   .marker > div {
     position: relative;
     height: 100%;
     width: 100%; }
   .marker i {
     font-size: 100px; }
-  .marker img {
+  .marker img, .marker .img-overlay {
     width: 50px;
     border-radius: 100%;
     display: block;
     position: absolute;
     top: 0;
     margin: 13px 25px 0; }
+  .marker .img-overlay {
+    height: 50px;
+    background-color: rgba(0, 0, 0, 0.6); }
 
 #marker-north-america {
   top: 18%;
@@ -309,10 +310,6 @@ div, span {
   top: 11%;
   left: 45%; }
 
-#marker-middle-east {
-  top: 18%;
-  left: 53%; }
-
 .header {
   position: absolute;
   top: 10px;
@@ -324,13 +321,14 @@ div, span {
   position: absolute;
   top: 100%;
   z-index: 99;
-  outline: none; }
+  outline: none;
+  text-align: center; }
 
 #asia, #australia {
   top: 0;
   left: 100%; }
 
-#south-america, #africa, #middle-east {
+#south-america, #africa {
   top: 0;
   right: 100%; }
 
@@ -339,6 +337,12 @@ div, span {
 
 h1 {
   margin: 0; }
+
+img.slide {
+  display: block;
+  max-width: 100%;
+  height: 100%;
+  margin: auto; }
 
 .flipIn {
   -webkit-animation-duration: 1s;

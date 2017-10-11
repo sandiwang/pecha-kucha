@@ -70,6 +70,11 @@ $(function(){
 		}, pageTransDuration, 'linear', () => resetSlides(continent)).removeAttr('tabindex');
 	}
 
+	function disableMarker(continent) {
+		$(`#marker-${continent} > div`).append('<div class="img-overlay"></div>');
+		$(`#marker-${continent}`).addClass('disabled');
+	}
+
 	function nextSlide(continent) {
 		console.log('before:', currentSlide);
 		if( isLastSlide(currentSlide) === 1 ) {
@@ -83,6 +88,7 @@ $(function(){
 			$(`#${continent}`).on('keydown', (e) => {
 				if( e.which === 40 || e.which === 13 ){
 					backToCover(continent);
+					disableMarker(continent);
 				}
 			});
 			// setTimeout(() => backToCover(continent), 2000);
@@ -124,8 +130,6 @@ $(function(){
 				startPresent(continent);
 			}
 		});
-
-		$(`#marker-${continent}`).addClass('disabled');
 	}
 
 
