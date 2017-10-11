@@ -83,7 +83,7 @@ gulp.task('images', function() {
 });
 
 gulp.task('default', function(callback) {
-	runSequence(['bower', 'sass', 'jquery', 'babel', 'browserSync'], 'watch',
+	runSequence(['bower', 'sass', 'jquery', 'babel', 'browserSync', 'build'], 'watch',
 		callback
 		)
 });
