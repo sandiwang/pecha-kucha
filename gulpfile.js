@@ -54,13 +54,13 @@ gulp.task('jquery', function(){
 });
 
 gulp.task('js', function(cb) {
-	gulp.src('bower_components/jQuery/*/*.min.js')
+	gulp.src('bower_components/*/*/*.min.js')
 		.pipe(gulp.dest('public/js'));
 
 	pump([
         gulp.src('app/js/dist/*.js'),
         uglify(),
-        gulp.dest('./public/js')
+        gulp.dest('./public/js/dist')
     ],
     cb
     );
