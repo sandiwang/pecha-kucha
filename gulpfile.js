@@ -4,9 +4,9 @@ const browserSync = require('browser-sync').create();
 const runSequence = require('run-sequence');
 const bower = require('gulp-bower');
 const babel = require('gulp-babel');
-//const bower = require('gulp-bower-files');
-//const concat = require('gulp-concat')
-//const gulpFilter = require('gulp-filter');
+const uglify = require('gulp-uglify');
+const imagemin = require('gulp-imagemin');
+const pump = require('pump');
 
 gulp.task('bower', function() {
   return bower();
@@ -48,8 +48,48 @@ gulp.task('watch', function() {
 	gulp.watch('app/js/*.js', ['babel']);
 });
 
+gulp.task('jquery', function(){
+	gulp.src('bower_components/*/*/*.min.js')
+		.pipe(gulp.dest('app/js'));
+});
+
+gulp.task('js', function(cb) {
+	gulp.src('bower_components/jQuery/*/*.min.js')
+		.pipe(gulp.dest('public/js'));
+
+	pump([
+        gulp.src('app/js/dist/*.js'),
+        uglify(),
+        gulp.dest('./public/js')
+    ],
+    cb
+    );
+});
+
+gulp.task('css', function() {
+	gulp.src('app/css/*.css')
+		.pipe(gulp.dest('public/css'));
+});
+
+gulp.task('html', function() {
+	gulp.src('app/*.html')
+		.pipe(gulp.dest('public/'));
+});
+
+gulp.task('images', function() {
+	gulp.src('app/img/*.*')
+		.pipe(imagemin())
+		.pipe(gulp.dest('public/img'));
+});
+
 gulp.task('default', function(callback) {
-	runSequence(['bower', 'sass', 'babel', 'browserSync'], 'watch',
+	runSequence(['bower', 'sass', 'jquery', 'babel', 'browserSync'], 'watch',
+		callback
+		)
+});
+
+gulp.task('build', function(callback) {
+	runSequence('html', 'css', 'js', 'images', 
 		callback
 		)
 });

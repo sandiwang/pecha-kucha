@@ -17,7 +17,10 @@
     "gulp-bower-files": "^0.2.7",
     "gulp-concat": "^2.6.1",
     "gulp-filter": "^5.0.1",
+    "gulp-imagemin": "^3.4.0",
     "gulp-sass": "^3.1.0",
+    "gulp-uglify": "^3.0.0",
+    "pump": "^1.0.2",
     "run-sequence": "^2.1.0"
   }
 }
