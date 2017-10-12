@@ -30,14 +30,14 @@ $(function () {
 	}
 
 	function showMarkers() {
-		slideMarkerIn($('.marker:nth-child(2n):not(:last-child)'), bodyFade + headlineFade + 500);
-		slideMarkerIn($('.marker:nth-child(3n)'), bodyFade + headlineFade + 1000);
-		slideMarkerIn($('.marker:nth-child(2n+1)'), bodyFade + headlineFade + 1500);
-		slideMarkerIn($('.marker:nth-child(6n)'), bodyFade + headlineFade + 2000);
+		slideMarkerIn($('.marker:nth-child(2n):not(:last-child)'), bodyFade + headlineFade + 300);
+		slideMarkerIn($('.marker:nth-child(3n)'), bodyFade + headlineFade + 800);
+		slideMarkerIn($('.marker:nth-child(2n+1)'), bodyFade + headlineFade + 1300);
+		slideMarkerIn($('.marker:nth-child(6n)'), bodyFade + headlineFade + 1800);
 
 		setTimeout(function () {
 			return $('.marker').css('display', 'block').removeClass('slideIn');
-		}, bodyFade + headlineFade + 2000);
+		}, bodyFade + headlineFade + 1800);
 	}
 
 	function addClassLast(elem) {
@@ -50,7 +50,7 @@ $(function () {
 
 	function isLastSlide(count) {
 		// TODO: replace 2 with 20
-		return count + 1 === 10 ? 1 : 0;
+		return count + 1 === 20 ? 1 : 0;
 	}
 
 	function doSlide(continent) {

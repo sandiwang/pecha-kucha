@@ -6,6 +6,9 @@ $worksans: 'Work Sans', sans-serif;
 $dark-blue: #124672;
 $verydark-blue: #111926;
 
+$green: #77933c;
+$light-green: #c3d79c;
+
 $font12: 0.8571rem;
 $font16: 1.143rem;
 $font18: 1.286rem;
@@ -21,7 +24,7 @@ $font60: 4.286rem;
 $font80: 5.714rem;
 
 $mainheaderH: 160px;
-$markerSize: 100px;
+$markerSize: 140px;
 
 @import 'animations';
 
@@ -192,48 +195,48 @@ div, span{
 	}
 
 	img, .img-overlay{
-		width: $markerSize - 50px;
+		width: $markerSize - 70px;
 		border-radius: 100%;
 		display: block;
 		position: absolute;
 		top: 0;
-		margin: 13px 25px 0;
+		margin: 17px 35px 0;
 	}
 
 	.img-overlay{
-		height: $markerSize - 50px;
+		height: $markerSize - 70px;
 		background-color: rgba(#000, 0.6);
 	}
 }
 
 #marker-north-america{
-	top: 18%;
-	left: 11%;
+	top: 14%;
+	left: 9%;
 }
 
 #marker-south-america{
-	top: 58%;
-	left: 22%;
+	top: 54%;
+	left: 20%;
 }
 
 #marker-asia{
-	top: 25%;
-	left: 74%;
+	top: 31%;
+	left: 73%;
 }
 
 #marker-australia{
-	top: 62%;
-	left: 84%;
+	top: 60%;
+	left: 82%;
 }
 
 #marker-africa{
 	top: 33%;
-	left: 47%;
+	left: 46%;
 }
 
 #marker-europe{
-	top: 11%;
-	left: 45%;
+	top: 7%;
+	left: 43%;
 }
 
 .header{
@@ -260,6 +263,14 @@ div, span{
 #south-america, #africa{
 	top: 0;
 	right: 100%;
+}
+
+#australia .section{
+	&:first-child, &:nth-child(2){
+		background-color: $light-green;
+	}
+
+	background-color: $green;
 }
 
 .section{
@@ -313,9 +324,27 @@ img.slide{
 		height: 670px;
 	}
 
-	#marker-europe{
+	#marker-north-america{
 		top: 10%;
-		left: 42%;
+	}
+
+	#marker-south-america{
+		top: 50%;
+	}
+
+	#marker-asia{
+		top: 27%;
+		left: 72%;
+	}
+
+	#marker-australia{
+		top: 55%;
+		left: 81%;
+	}
+
+	#marker-europe{
+		top: 4%;
+		left: 40%;
 	}
 }
 

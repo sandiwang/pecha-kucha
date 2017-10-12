@@ -89,7 +89,7 @@ gulp.task('default', function(callback) {
 });
 
 gulp.task('build', function(callback) {
-	runSequence('html', 'css', 'js', 'images', 
+	runSequence('html', 'css', 'js', 
 		callback
 		)
 });
