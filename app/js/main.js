@@ -1,6 +1,6 @@
 $(function(){
 	// TODO: change slide duration to 20000 (20 secs)
-	const bodyFade = 500, headlineFade = 300, pageTransDuration = 500, slideDuration = 2000;
+	const bodyFade = 500, headlineFade = 300, pageTransDuration = 500, slideDuration = 20000;
 	let currentSlide = 1, continentInterval,
 			windowH = $(window).height();
 

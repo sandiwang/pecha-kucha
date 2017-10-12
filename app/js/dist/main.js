@@ -5,7 +5,7 @@ $(function () {
 	var bodyFade = 500,
 	    headlineFade = 300,
 	    pageTransDuration = 500,
-	    slideDuration = 2000;
+	    slideDuration = 20000;
 	var currentSlide = 1,
 	    continentInterval = void 0,
 	    windowH = $(window).height();
